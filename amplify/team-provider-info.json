@@ -1,0 +1,19 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "octank-b2bportal-20190214213703-authRole",
+            "UnauthRoleArn": "arn:aws:iam::441801468211:role/octank-b2bportal-20190214213703-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::441801468211:role/octank-b2bportal-20190214213703-authRole",
+            "Region": "us-east-2",
+            "DeploymentBucketName": "octank-b2bportal-20190214213703-deployment",
+            "UnauthRoleName": "octank-b2bportal-20190214213703-unauthRole",
+            "StackName": "octank-b2bportal-20190214213703",
+            "StackId": "arn:aws:cloudformation:us-east-2:441801468211:stack/octank-b2bportal-20190214213703/aaffc420-30a0-11e9-8c73-024d9c0f9898"
+        },
+        "categories": {
+            "auth": {
+                "cognito871df54e": {}
+            }
+        }
+    }
+}

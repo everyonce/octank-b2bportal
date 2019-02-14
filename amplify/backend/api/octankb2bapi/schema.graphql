@@ -1,0 +1,21 @@
+type Resource @model {
+  id: ID!
+  name: String!
+  sources: [SourceResource] @connection(name: "rsmap")
+}
+
+type Source @model {
+  id: ID!
+  location: String!
+  name: String!
+  resources: [SourceResource] @connection(name: "srmap")
+}
+
+type SourceResource @model {
+  id: ID!
+  price: Float
+  available: Float
+  resource: Resource @connection(name: "rsmap")
+  source: Source @connection(name: "srmap")
+  unit: String!
+}
