@@ -11,6 +11,7 @@ export const getResource = `query GetResource($id: ID!) {
         price
         available
         unit
+        version
       }
       nextToken
     }
@@ -45,6 +46,7 @@ export const getSource = `query GetSource($id: ID!) {
         price
         available
         unit
+        version
       }
       nextToken
     }
@@ -90,6 +92,7 @@ export const getSourceResource = `query GetSourceResource($id: ID!) {
       }
     }
     unit
+    version
   }
 }
 `;
@@ -113,6 +116,7 @@ export const listSourceResources = `query ListSourceResources(
         name
       }
       unit
+      version
     }
     nextToken
   }

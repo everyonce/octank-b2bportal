@@ -6,6 +6,7 @@ import logo from './logo.svg';
 import './App.css';
 
 import * as custom from './graphql/custom';
+import * as mutations from './graphql/mutations';
 
 
 import {
@@ -18,6 +19,48 @@ from 'react-accessible-accordion';
 import 'react-accessible-accordion/dist/fancy-example.css';
 
 Amplify.configure(awsexports);
+
+class OrderResources extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      id: '',
+      amount: ''
+    };
+  }
+
+  handleChange(name, ev) {
+    this.setState({
+      [name]: ev.target.value });
+  }
+
+  async submit() {
+    const { onOrder } = this.props;
+    var input = {
+      id: this.props.id,
+      available: this.state.amount
+    }
+    console.log(input);
+    await onOrder({ input })
+  }
+
+  render() {
+
+    return (
+      <span>
+            <input
+                name="orderAmount"
+                placeholder="orderAmount"
+                onChange={(ev) => { this.handleChange('amount', ev) }}
+            />
+            <button onClick={this.submit.bind(this)}>
+                Order
+            </button>
+            </span>
+    );
+  }
+}
+
 
 class App extends Component {
   render() {
@@ -38,6 +81,12 @@ class App extends Component {
                 <h4>Sources:</h4>
                 {resource.sources.items.map(source =>
                 <div>{source.source.name}: {source.available} available @ ${source.price} per {source.unit}
+                  <Connect mutation={graphqlOperation(mutations.updateSourceResource)}>
+                    {({mutation}) => (
+                      <OrderResources id={source.id} onOrder={mutation} />
+                    )}
+                  </Connect>
+                
                 </div>
                 )}
             </AccordionItemBody>

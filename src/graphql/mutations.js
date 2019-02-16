@@ -1,6 +1,31 @@
 // eslint-disable
 // this is an auto generated file. This will be overwritten
 
+export const orderResources = `mutation OrderResources($id: ID!, $quantity: Float) {
+  orderResources(id: $id, quantity: $quantity) {
+    id
+    price
+    available
+    resource {
+      id
+      name
+      sources {
+        nextToken
+      }
+    }
+    source {
+      id
+      location
+      name
+      resources {
+        nextToken
+      }
+    }
+    unit
+    version
+  }
+}
+`;
 export const createResource = `mutation CreateResource($input: CreateResourceInput!) {
   createResource(input: $input) {
     id
@@ -11,6 +36,7 @@ export const createResource = `mutation CreateResource($input: CreateResourceInp
         price
         available
         unit
+        version
       }
       nextToken
     }
@@ -27,6 +53,7 @@ export const updateResource = `mutation UpdateResource($input: UpdateResourceInp
         price
         available
         unit
+        version
       }
       nextToken
     }
@@ -43,6 +70,7 @@ export const deleteResource = `mutation DeleteResource($input: DeleteResourceInp
         price
         available
         unit
+        version
       }
       nextToken
     }
@@ -60,6 +88,7 @@ export const createSource = `mutation CreateSource($input: CreateSourceInput!) {
         price
         available
         unit
+        version
       }
       nextToken
     }
@@ -77,6 +106,7 @@ export const updateSource = `mutation UpdateSource($input: UpdateSourceInput!) {
         price
         available
         unit
+        version
       }
       nextToken
     }
@@ -94,6 +124,7 @@ export const deleteSource = `mutation DeleteSource($input: DeleteSourceInput!) {
         price
         available
         unit
+        version
       }
       nextToken
     }
@@ -121,6 +152,7 @@ export const createSourceResource = `mutation CreateSourceResource($input: Creat
       }
     }
     unit
+    version
   }
 }
 `;
@@ -145,6 +177,7 @@ export const updateSourceResource = `mutation UpdateSourceResource($input: Updat
       }
     }
     unit
+    version
   }
 }
 `;
@@ -169,6 +202,7 @@ export const deleteSourceResource = `mutation DeleteSourceResource($input: Delet
       }
     }
     unit
+    version
   }
 }
 `;

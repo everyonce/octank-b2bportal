@@ -11,6 +11,7 @@ export const onCreateResource = `subscription OnCreateResource {
         price
         available
         unit
+        version
       }
       nextToken
     }
@@ -27,6 +28,7 @@ export const onUpdateResource = `subscription OnUpdateResource {
         price
         available
         unit
+        version
       }
       nextToken
     }
@@ -43,6 +45,7 @@ export const onDeleteResource = `subscription OnDeleteResource {
         price
         available
         unit
+        version
       }
       nextToken
     }
@@ -60,6 +63,7 @@ export const onCreateSource = `subscription OnCreateSource {
         price
         available
         unit
+        version
       }
       nextToken
     }
@@ -77,6 +81,7 @@ export const onUpdateSource = `subscription OnUpdateSource {
         price
         available
         unit
+        version
       }
       nextToken
     }
@@ -94,6 +99,7 @@ export const onDeleteSource = `subscription OnDeleteSource {
         price
         available
         unit
+        version
       }
       nextToken
     }
@@ -121,6 +127,7 @@ export const onCreateSourceResource = `subscription OnCreateSourceResource {
       }
     }
     unit
+    version
   }
 }
 `;
@@ -145,6 +152,7 @@ export const onUpdateSourceResource = `subscription OnUpdateSourceResource {
       }
     }
     unit
+    version
   }
 }
 `;
@@ -169,6 +177,7 @@ export const onDeleteSourceResource = `subscription OnDeleteSourceResource {
       }
     }
     unit
+    version
   }
 }
 `;

@@ -11,11 +11,15 @@ type Source @model {
   resources: [SourceResource] @connection(name: "srmap")
 }
 
-type SourceResource @model {
+type SourceResource @model  @versioned {
   id: ID!
   price: Float
   available: Float
   resource: Resource @connection(name: "rsmap")
   source: Source @connection(name: "srmap")
   unit: String!
+}
+
+type Mutation {
+  orderResources(id: ID!, quantity: Float): SourceResource
 }
