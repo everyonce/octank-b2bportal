@@ -24,3 +24,16 @@ export const listResources = `query ListResources(
   }
 }
 `;
+
+export const orderResources = `mutation OrderResources(
+  $id: ID!
+  $quantity: Float
+  ) {
+  orderResources(
+ id:$id
+  quantity: $quantity
+ ) {
+ id
+ }
+}
+`;

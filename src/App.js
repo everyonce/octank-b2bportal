@@ -31,17 +31,18 @@ class OrderResources extends Component {
 
   handleChange(name, ev) {
     this.setState({
-      [name]: ev.target.value });
+      [name]: ev.target.value
+    });
   }
 
   async submit() {
     const { onOrder } = this.props;
     var input = {
-      id: this.props.id,
-      available: this.state.amount
+      "id": this.props.id,
+      "quantity": this.state.amount
     }
     console.log(input);
-    await onOrder({ input })
+    await onOrder(input)
   }
 
   render() {
@@ -81,7 +82,7 @@ class App extends Component {
                 <h4>Sources:</h4>
                 {resource.sources.items.map(source =>
                 <div>{source.source.name}: {source.available} available @ ${source.price} per {source.unit}
-                  <Connect mutation={graphqlOperation(mutations.updateSourceResource)}>
+                  <Connect mutation={graphqlOperation(custom.orderResources)}>
                     {({mutation}) => (
                       <OrderResources id={source.id} onOrder={mutation} />
                     )}
