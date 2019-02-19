@@ -23,3 +23,9 @@ type SourceResource @model  @versioned {
 type Mutation {
   orderResources(id: ID!, quantity: Float): SourceResource
 }
+
+type Subscription {
+  onResource: Resource @aws_subscribe(mutations: ["createResource","deleteResource","updateResource"])
+  onSource: Source @aws_subscribe(mutations: ["createSource","deleteSource","updateSource"])
+  onSourceResource: SourceResource @aws_subscribe(mutations: ["orderResources","createSourceResource","deleteSourceResource","updateSourceResource"])
+}

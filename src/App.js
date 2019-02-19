@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import awsexports from './aws-exports'
+import awsexports from './aws-exports';
 import Amplify, { graphqlOperation } from 'aws-amplify';
 import { Connect, withAuthenticator } from 'aws-amplify-react';
 import logo from './logo.svg';
 import './App.css';
 
 import * as custom from './graphql/custom';
-import * as mutations from './graphql/mutations';
+import * as subscriptions from './graphql/subscriptions';
 
 
 import {
@@ -39,10 +39,9 @@ class OrderResources extends Component {
     const { onOrder } = this.props;
     var input = {
       "id": this.props.id,
-      "quantity": this.state.amount
-    }
-    console.log(input);
-    await onOrder(input)
+      "quantity": -this.state.amount
+    };
+    await onOrder(input);
   }
 
   render() {
@@ -64,6 +63,18 @@ class OrderResources extends Component {
 
 
 class App extends Component {
+  onSRChange = (prevQuery, newData) => {
+    let incoming = newData.onSourceResource;
+    let updatedQuery = Object.assign({}, prevQuery);
+    updatedQuery.listResources.items.forEach(
+      resource => {
+        resource.sources.items.forEach(
+          sr => { if (sr.id === incoming.id) sr.available = incoming.available; }
+        );
+      });
+    return updatedQuery;
+  }
+
   render() {
 
     const ListView = ({ resources }) => (
@@ -107,7 +118,8 @@ class App extends Component {
         </header>
         <Connect 
            query={graphqlOperation(custom.listResources)}
-           
+           subscription={graphqlOperation(subscriptions.onSourceResource)}
+           onSubscriptionMsg= {this.onSRChange}
          >
           {({ data: { listResources }, loading, error }) => {
               if (error) return (<h3>Error</h3>);

@@ -33,7 +33,7 @@ export const orderResources = `mutation OrderResources(
  id:$id
   quantity: $quantity
  ) {
- id
+ id,available
  }
 }
 `;

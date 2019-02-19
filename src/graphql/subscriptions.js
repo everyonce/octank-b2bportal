@@ -1,6 +1,66 @@
 // eslint-disable
 // this is an auto generated file. This will be overwritten
 
+export const onResource = `subscription OnResource {
+  onResource {
+    id
+    name
+    sources {
+      items {
+        id
+        price
+        available
+        unit
+        version
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const onSource = `subscription OnSource {
+  onSource {
+    id
+    location
+    name
+    resources {
+      items {
+        id
+        price
+        available
+        unit
+        version
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const onSourceResource = `subscription OnSourceResource {
+  onSourceResource {
+    id
+    price
+    available
+    resource {
+      id
+      name
+      sources {
+        nextToken
+      }
+    }
+    source {
+      id
+      location
+      name
+      resources {
+        nextToken
+      }
+    }
+    unit
+    version
+  }
+}
+`;
 export const onCreateResource = `subscription OnCreateResource {
   onCreateResource {
     id
