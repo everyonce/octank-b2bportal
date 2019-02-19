@@ -82,7 +82,6 @@ class App extends Component {
       <h3>Available Resources</h3>
       <Accordion>
           {resources.map(resource => 
-          
           <AccordionItem>
             <AccordionItemTitle>{resource.name} (
               {resource.sources.items.reduce((totalavail, sresource) => totalavail + sresource.available, 0)} available, 
@@ -91,16 +90,20 @@ class App extends Component {
             </AccordionItemTitle>
             <AccordionItemBody>
                 <h4>Sources:</h4>
-                {resource.sources.items.map(source =>
-                <div>{source.source.name}: {source.available} available @ ${source.price} per {source.unit}
-                  <Connect mutation={graphqlOperation(custom.orderResources)}>
-                    {({mutation}) => (
-                      <OrderResources id={source.id} onOrder={mutation} />
-                    )}
-                  </Connect>
-                
-                </div>
-                )}
+                { 
+                resource.sources.items.length > 0 ?
+                resource.sources.items.map(source => { return(
+                  <div>{source.source.name}: {source.available} available @ ${source.price} per {source.unit}
+                    <Connect mutation={graphqlOperation(custom.orderResources)}>
+                      {({mutation}) => (
+                        <OrderResources id={source.id} onOrder={mutation} />
+                      )}
+                    </Connect>
+                  </div>
+                )})
+                :
+                <h4>No Sources Available for this Resource</h4>
+                }
             </AccordionItemBody>
           </AccordionItem>
           )}
